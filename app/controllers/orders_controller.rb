@@ -15,8 +15,9 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    @order = Order.new(order_params)
-
+    @order = Order.create
+    Product.add_ingredients(params[:order][:items], @order)
+    byebug
     if @order.save
       render json: @order, status: :created, location: @order
     else
@@ -46,6 +47,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.fetch(:order, {})
+      params.require(:order)
     end
 end
