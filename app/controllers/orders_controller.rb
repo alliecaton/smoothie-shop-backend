@@ -4,8 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   def index
     @orders = Order.all
-
-    render json: @orders
+    render json: @orders, include: [:products => { include: :ingredients }]
   end
 
   # GET /orders/1
