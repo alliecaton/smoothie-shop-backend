@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
+  # PATCH/  PUT /orders/1
   def update
     if @order.update(order_params)
       render json: @order
