@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
   def update
     set_order
     if @order.status = params[:order][:status]
+      @order.save
       render json: @order
     else
       render json: @order.errors, status: :unprocessable_entity
